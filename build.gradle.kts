@@ -17,6 +17,7 @@ repositories {
     mavenCentral()
     google()
     maven { url = uri("https://maven.pkg.jetbrains.space/public/p/compose/dev") }
+    maven { url = uri("https://maven.pkg.jetbrains.space/public/p/skiko/dev") }
 }
 
 dependencies {
@@ -52,7 +53,9 @@ dependencies {
     // 移除错误的 Linux ARM64 依赖，尝试替换为 Android ARM64 依赖
     // include("org.jetbrains.skiko:skiko-awt-runtime-linux-arm64:0.8.12")
     // 尝试直接包含 Android ARM64 运行时，期望 ZL2/PojavLauncher 能正确加载
-    include("org.jetbrains.skiko:skiko-awt-runtime-android-arm64:0.8.12")
+    // 使用 implementation 而不是 include，因为 Android 运行时可能不需要（也不应该）被打入 Fabric JAR 的 AWT 部分
+    // 如果 ZL2 需要它，它应该作为依赖项存在
+    implementation("org.jetbrains.skiko:skiko-android-arm64:0.8.12")
     include("androidx.collection:collection:1.4.0")
 }
 
