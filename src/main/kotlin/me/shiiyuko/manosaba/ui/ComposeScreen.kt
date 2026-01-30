@@ -84,11 +84,11 @@ abstract class ComposeScreen(title: Text) : Screen(title) {
         skiaContext = DirectContext.makeGL()
         renderTarget = BackendRenderTarget.makeGL(
             frameWidth, frameHeight, 0, 8,
-            mc.framebuffer.fbo, FramebufferFormat.GR_GL_RGBA8
+            mc.framebuffer.fbo, FramebufferFormat.GR_GL_SRGBA8
         )
         surface = Surface.makeFromBackendRenderTarget(
             skiaContext!!, renderTarget!!, SurfaceOrigin.BOTTOM_LEFT,
-            SurfaceColorFormat.BGRA_8888, ColorSpace.sRGB
+            SurfaceColorFormat.RGBA_8888, ColorSpace.sRGB
         )
     }
 
