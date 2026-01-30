@@ -25,6 +25,7 @@ dependencies {
     }
     include(compose.foundation)
     include(compose.ui)
+    include(compose.runtime)
     minecraft(libs.minecraft)
     mappings(variantOf(libs.yarn.mappings) { classifier("v2") })
     modImplementation(libs.fabric.loader)
