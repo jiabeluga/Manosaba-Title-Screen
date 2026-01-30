@@ -19,6 +19,8 @@ repositories {
 }
 
 dependencies {
+    // Force include Skia for rendering
+    include("org.jetbrains.skia:skia-desktop:0.116.1")
     // Include Compose libraries into the JAR
     include(compose.desktop.currentOs) {
         exclude(group = "org.jetbrains.compose.material")
@@ -26,6 +28,10 @@ dependencies {
     include(compose.foundation)
     include(compose.ui)
     include(compose.runtime)
+    include(compose.uiUtil)
+    include(compose.graphics)
+    include(compose.animation)
+    include(compose.animationCore)
     minecraft(libs.minecraft)
     mappings(variantOf(libs.yarn.mappings) { classifier("v2") })
     modImplementation(libs.fabric.loader)
