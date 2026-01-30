@@ -16,22 +16,10 @@ base {
 repositories {
     mavenCentral()
     google()
+    maven { url = uri("https://maven.pkg.jetbrains.space/public/p/compose/dev") }
 }
 
 dependencies {
-    // Force include Skia for rendering
-    include("org.jetbrains.skia:skia-desktop:0.116.1")
-    // Include Compose libraries into the JAR
-    include(compose.desktop.currentOs) {
-        exclude(group = "org.jetbrains.compose.material")
-    }
-    include(compose.foundation)
-    include(compose.ui)
-    include(compose.runtime)
-    include(compose.uiUtil)
-    include(compose.graphics)
-    include(compose.animation)
-    include(compose.animationCore)
     minecraft(libs.minecraft)
     mappings(variantOf(libs.yarn.mappings) { classifier("v2") })
     modImplementation(libs.fabric.loader)
@@ -44,6 +32,23 @@ dependencies {
     }
     implementation(compose.foundation)
     implementation(compose.ui)
+    implementation(compose.runtime)
+
+    // Include Compose and Skia for standalone mod
+    include(compose.desktop.currentOs) {
+        exclude(group = "org.jetbrains.compose.material")
+    }
+    include(compose.foundation)
+    include(compose.ui)
+    include(compose.runtime)
+    
+    // Manual include for Skia and other required modules using string notation
+    include("org.jetbrains.compose.ui:ui-unit:1.7.3")
+    include("org.jetbrains.compose.ui:ui-graphics:1.7.3")
+    include("org.jetbrains.compose.ui:ui-geometry:1.7.3")
+    include("org.jetbrains.compose.ui:ui-text:1.7.3")
+    include("org.jetbrains.compose.ui:ui-util:1.7.3")
+    include("org.jetbrains.skiko:skiko-awt:0.8.12")
 }
 
 tasks.processResources {
@@ -84,7 +89,7 @@ java {
 
 tasks.jar {
     from("LICENSE") {
-        rename { "${it}_${project.base.archivesName.get()}" }
+        rename { "\${it}_\${project.base.archivesName.get()}" }
     }
 }
 
