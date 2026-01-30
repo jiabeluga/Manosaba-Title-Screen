@@ -55,7 +55,8 @@ dependencies {
     // 尝试直接包含 Android ARM64 运行时，期望 ZL2/PojavLauncher 能正确加载
     // 使用 implementation 而不是 include，因为 Android 运行时可能不需要（也不应该）被打入 Fabric JAR 的 AWT 部分
     // 如果 ZL2 需要它，它应该作为依赖项存在
-    implementation("org.jetbrains.skiko:skiko-android-arm64:0.8.12")
+    // 使用通用 Skiko 运行时依赖，由 Gradle 根据目标环境自动解析
+    implementation("org.jetbrains.skiko:skiko:0.8.12")
     include("androidx.collection:collection:1.4.0")
 }
 
