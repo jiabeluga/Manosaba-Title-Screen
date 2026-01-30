@@ -42,7 +42,7 @@ dependencies {
     include(compose.ui)
     include(compose.runtime)
     
-    // Manual include for Skia and other required modules using string notation
+    // Manual include for required modules using string notation to avoid property errors
     include("org.jetbrains.compose.ui:ui-unit:1.7.3")
     include("org.jetbrains.compose.ui:ui-graphics:1.7.3")
     include("org.jetbrains.compose.ui:ui-geometry:1.7.3")
@@ -89,7 +89,7 @@ java {
 
 tasks.jar {
     from("LICENSE") {
-        rename { "\${it}_\${project.base.archivesName.get()}" }
+        rename { "${it}_${project.base.archivesName.get()}" }
     }
 }
 
