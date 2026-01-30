@@ -49,6 +49,8 @@ dependencies {
     include("org.jetbrains.compose.ui:ui-text:1.7.3")
     include("org.jetbrains.compose.ui:ui-util:1.7.3")
     include("org.jetbrains.skiko:skiko-awt:0.8.12")
+    include("org.jetbrains.skiko:skiko-awt-runtime-linux-arm64:0.8.12")
+    include("androidx.collection:collection:1.4.0")
 }
 
 tasks.processResources {
