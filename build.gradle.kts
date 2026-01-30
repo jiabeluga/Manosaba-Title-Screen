@@ -19,6 +19,12 @@ repositories {
 }
 
 dependencies {
+    // Include Compose libraries into the JAR
+    include(compose.desktop.currentOs) {
+        exclude(group = "org.jetbrains.compose.material")
+    }
+    include(compose.foundation)
+    include(compose.ui)
     minecraft(libs.minecraft)
     mappings(variantOf(libs.yarn.mappings) { classifier("v2") })
     modImplementation(libs.fabric.loader)
